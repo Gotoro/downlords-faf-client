@@ -103,7 +103,7 @@ public class ModDetailControllerTest extends AbstractPlainJavaFxTest {
     WaitForAsyncUtils.waitForFxEvents();
 
     assertThat(instance.nameLabel.getText(), is("ModVersion name"));
-    assertThat(instance.authorLabel.getText(), is("ModVersion author"));
+    assertThat(instance.uploaderLabel.getText(), is("ModVersion author"));
     assertThat(instance.thumbnailImageView.getImage(), is(notNullValue()));
     verify(modService).loadThumbnail(modVersion);
   }

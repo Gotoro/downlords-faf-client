@@ -58,11 +58,12 @@ public class ModDetailController implements Controller<Node> {
   public Button installButton;
   public ImageView thumbnailImageView;
   public Label nameLabel;
-  public Label authorLabel;
+  public Label uploaderLabel;
   public ProgressBar progressBar;
   public Label modDescriptionLabel;
   public Node modDetailRoot;
   public ReviewsController reviewsController;
+  public Label authorLabel;
 
   private ModVersion modVersion;
   private ListChangeListener<ModVersion> installStatusChangeListener;
@@ -124,7 +125,11 @@ public class ModDetailController implements Controller<Node> {
     this.modVersion = modVersion;
     thumbnailImageView.setImage(modService.loadThumbnail(modVersion));
     nameLabel.setText(modVersion.getDisplayName());
-    authorLabel.setText(modVersion.getUploader());
+    com.faforever.client.api.dto.Player uploader = modVersion.getMod().getUploader();
+    if (uploader != null) {
+      uploaderLabel.setText(uploader.getLogin());
+    }
+    authorLabel.setText(modVersion.getMod().getAuthor());
 
     boolean modInstalled = modService.isModInstalled(modVersion.getUid());
     installButton.setVisible(!modInstalled);

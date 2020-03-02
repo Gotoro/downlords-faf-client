@@ -158,6 +158,7 @@ public class ModVersion {
             .map(Review::fromDto)
             .collect(Collectors.toList()));
     modVersion.setModType(ModType.fromDto(modVersionVersion.getType()));
+    modVersion.setMod(Mod.fromDto(dto));
     return modVersion;
   }
 
